@@ -366,6 +366,7 @@ h1, h2, h3 { text-transform: uppercase; }
     color: var(--white);
     box-shadow: 0 20px 40px rgba(0, 38, 198, 0.2);
 }
+.cta-container a { color: var(--accent-orange); text-decoration: none; }
 
 .cta-container h2 {
     font-family: var(--font-titolo-sezioni);
