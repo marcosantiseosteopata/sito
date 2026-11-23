@@ -1,74 +1,70 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  requestAnimationFrame(() => setTimeout(() => document.body.classList.add("ready"), 80));
 
-    // 1. Gestione Navbar allo scroll
-    const nav = document.querySelector('.main-nav');
-    
-    const handleScroll = () => {
-        if (!nav) return; // Controllo di sicurezza
-        
-        if (window.scrollY > 20) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    };
+  // Navbar
+  const nav = document.getElementById("nav");
+  const burger = nav.querySelector(".burger");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 20);
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  burger.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+    document.body.style.overflow = open ? "hidden" : "";
+  });
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Attiva subito al caricamento se la pagina è già scrollata
+  // Scorrimento con compensazione della barra
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+    const id = a.getAttribute("href"); const t = id === "#top" ? document.body : document.querySelector(id);
+    if (!t) return; e.preventDefault();
+    nav.classList.remove("open"); burger.setAttribute("aria-expanded", false); document.body.style.overflow = "";
+    const y = id === "#top" ? 0 : t.getBoundingClientRect().top + window.scrollY - (id === "#contatti" || id === "#servizi" ? 0 : nav.offsetHeight);
+    window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+  }));
 
-    // 2. Animazioni di Comparsa (Intersection Observer)
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 // Scatta quando il 15% dell'elemento è visibile
-    };
+  // Comparse
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .18 });
+  document.querySelectorAll(".reveal,.scene").forEach(el => io.observe(el));
+  // I testi "a sipario" hanno area visibile zero finché sono chiusi: osservo il contenitore
+  const io2 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.querySelectorAll(":scope > .clip").forEach(c => c.classList.add("in")); io2.unobserve(e.target); } }), { threshold: .1 });
+  new Set([...document.querySelectorAll(".clip")].map(c => c.parentElement)).forEach(p => io2.observe(p));
+  document.querySelectorAll(".scene-list .scene").forEach((el, i) => el.style.transitionDelay = (i * 0.12) + "s");
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Ferma l'osservazione per non ripetere l'animazione
-            }
+  // Manifesto: parole che si accendono durante lo scorrimento
+  const box = document.querySelector("[data-words]");
+  const wrap = node => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(part));
+          else { const s = document.createElement("span"); s.className = "w"; s.textContent = part; frag.appendChild(s); }
         });
-    }, observerOptions);
-
-    // Applica l'osservatore agli elementi base
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
-
-    // Applica l'effetto "Stagger" (a cascata) per gli elementi della griglia
-    const staggerItems = document.querySelectorAll('.stagger-grid .reveal-item');
-    staggerItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.15}s`; // Ritardo basato sulla posizione
-        observer.observe(item);
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) wrap(n);
     });
+  };
+  wrap(box);
+  const words = [...box.querySelectorAll(".w")];
 
-    // 3. Smooth Scroll Preciso (Compensazione altezza navbar)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            
-            if (targetId === "#") return; // Ignora se il link è vuoto
-
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                e.preventDefault();
-                
-                // Calcola l'altezza della navbar per non coprire il titolo
-                const navHeight = nav ? nav.offsetHeight : 0;
-                
-                // Calcola l'esatta posizione dell'elemento sullo schermo
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                
-                // Offset: Posizione elemento + Scroll attuale - Altezza Navbar - Spazio extra (20px)
-                const offsetPosition = elementPosition + window.scrollY - navHeight - 20;
-        
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
+  // Parallasse
+  const px = [...document.querySelectorAll("[data-parallax]")];
+  const pxx = [...document.querySelectorAll("[data-parallax-x]")];
+  let ticking = false;
+  const frame = () => {
+    const vh = window.innerHeight, sy = window.scrollY;
+    if (!reduce) {
+      if (sy < vh * 1.2) px.forEach(el => { el.style.setProperty("--py", (sy * parseFloat(el.dataset.parallax)) + "px"); el.style.setProperty("--sc", 1 + sy / vh * 0.08); });
+      pxx.forEach(el => { const r = el.parentElement.getBoundingClientRect(); el.style.transform = "translateX(" + (-(vh - r.top) * parseFloat(el.dataset.parallaxX)) + "px)"; });
+    }
+    const r = box.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.2)));
+    const n = reduce ? words.length : Math.round(p * words.length);
+    words.forEach((w, i) => w.classList.toggle("lit", i < n));
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  window.addEventListener("resize", frame);
+  frame();
 });

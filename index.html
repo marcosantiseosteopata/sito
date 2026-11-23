@@ -1,128 +1,121 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco Santise | Osteopata D.O.</title>
-   <meta name="format-detection" content="telephone=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marco Santise | Osteopata D.O.</title>
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Bebas+Neue&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="curtain" aria-hidden="true"><span class="bar-top"></span><span class="bar-bottom"></span><div class="slate">MARCO SANTISE · OSTEOPATA D.O.</div></div>
+<div class="grain" aria-hidden="true"></div>
 
-    <nav class="main-nav">
-        <div class="nav-content">
-    <a href="#" class="logo">
-        <img src="logo.png" alt="Logo Marco Santise">
-        <div class="logo-text">
-            <span class="logo-title">MARCO SANTISE</span>
-            <span class="logo-subtitle">Osteopata D.O.</span>
-        </div>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <img src="logo.png" alt="Logo Marco Santise">
+      <div class="logo-text"><span class="logo-title">MARCO SANTISE</span><span class="logo-subtitle">Osteopata D.O.</span></div>
     </a>
     <ul class="nav-links">
-        <li><a href="#servizi">Servizi</a></li>
-        <li><a href="#info">Studio</a></li>
-        <li><a href="#contatti">Contatti</a></li>
+      <li><a href="#servizi">Servizi</a></li>
+      <li><a href="#info">Studio</a></li>
+      <li><a href="#contatti">Contatti</a></li>
     </ul>
-    <a href="https://wa.me/393313289664" class="btn-nav">Prenota ora</a>
-</div>
-    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="https://wa.me/393313289664" class="btn-nav">Prenota ora</a>
+      <button class="burger" aria-label="Apri il menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
 
-    <main>
-        <section class="hero">
-        <h1 class="hero-title">MARCO SANTISE</h1>
-            <p class="hero-subtitle">OSTEOPATA D.O.</p>
-            <div class="hero-images">
-                <img src="logo.png" alt="Sfera Decorativa" class="sfera-bg">
-                <img src="marco.png" alt="Marco Santise Osteopata" class="foto-ragazzo">
-            </div>
-            
-            <a href="#servizi" class="btn scroll-btn">Scopri di più ↓</a>
-        </section>
+<main id="top">
+  <!-- SCENA 1: locandina -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <img src="logo.png" alt="" class="hero-sphere" aria-hidden="true">
+    <h1 class="hero-title" data-parallax="0.35"><span class="line"><span>MARCO</span></span><span class="line"><span>SANTISE</span></span></h1>
+    <div class="hero-photo-wrap" data-parallax="-0.12"><img src="marco.webp" alt="Marco Santise Osteopata" class="hero-photo"></div>
+    <div class="hero-meta">
+      <span class="role">Osteopata D.O.</span>
+      <a href="#servizi" class="scroll-cue">Scopri di più<i></i></a>
+      <span>Torino</span>
+    </div>
+  </section>
 
-        <section id="servizi" class="services section-padding">
-            <div class="section-header reveal">
-               
-                <p>Credo in un’osteopatia moderna, lontana dai miti e vicina alla ricerca. Nel <strong>mio lavoro</strong>, la salute è
-un obiettivo clinico da costruire insieme attraverso tecniche manuali basate su <strong>basi scientifiche aggiornate.</strong><br>
-<strong>Il mio compito</strong> è integrare l&#39;esperienza clinica con <strong>ciò che la letteratura ritiene più affidabile.</strong>
-Senza promesse miracolose, ma con la consapevolezza dei limiti fisiologici di ogni trattamento, mi
-impegno a offrirti un approccio trasparente e sicuro.<br>
-<strong>Il fine ultimo</strong> è il recupero della tua migliore condizione possibile, per favorire il ritorno alle
-attività quotidiane e sportive, rispettando i tempi e le possibilità del tuo corpo.</p>
- <h2 class="section-title">AMBITI DI COMPETENZA </h2>            
-</div>
-            <div class="services-grid stagger-grid">
-                <div class="service-card reveal-item">
-                    <h3>GESTIONE DEL DOLORE</h3>
-                    <p>Trattamento di tensioni muscolari e disagi articolari comuni, come cervicalgie e lombalgie aspecifiche.</p>
-                </div>
-                <div class="service-card reveal-item">
-                    <h3>MOBILITA' E FUNZIONE</h3>
-                    <p>Interventi volti a migliorare la mobilità e la distribuzione dei carichi per favorire il recupero funzionale.</p>
-                </div>
-                <div class="service-card reveal-item">
-                    <h3>AMBITO SPORTIVO</h3>
-                    <p>Supporto nella gestione dei sovraccarichi legati all&#39;attività, collaborando con le figure professionali di riferimento per il mantenimento della performance.</p>
-                </div>
-            </div>
-            <br><br>
-             <div class="section-header reveal">
-               
-                <p>L’osteopatia è una pratica complementare e non sostituisce i percorsi medici o riabilitativi.
-<strong>La valutazione iniziale</strong> è volta a escludere competenze non osteopatiche: in tal caso,
-sarà mia cura indirizzare il paziente verso il professionista sanitario più <strong>idoneo.</strong>
-Intervengo esclusivamente dove la letteratura scientifica riconosce alla terapia manuale un
-ruolo nel favorire i processi fisiologici, nel pieno rispetto dei limiti clinici.</p>
-          
-</div>
-        </section>
+  <!-- SCENA 2: manifesto -->
+  <section class="manifesto" id="servizi">
+    <div class="chapter-label reveal" style="color:var(--accent-orange)">Il mio approccio</div>
+    <div class="manifesto-text" data-words>
+      <p>Credo in un’osteopatia moderna, lontana dai miti e vicina alla ricerca. Nel <strong>mio lavoro</strong>, la salute è un obiettivo clinico da costruire insieme attraverso tecniche manuali basate su <strong>basi scientifiche aggiornate.</strong></p>
+      <p><strong>Il mio compito</strong> è integrare l'esperienza clinica con <strong>ciò che la letteratura ritiene più affidabile.</strong> Senza promesse miracolose, ma con la consapevolezza dei limiti fisiologici di ogni trattamento, mi impegno a offrirti un approccio trasparente e sicuro.</p>
+      <p><strong>Il fine ultimo</strong> è il recupero della tua migliore condizione possibile, per favorire il ritorno alle attività quotidiane e sportive, rispettando i tempi e le possibilità del tuo corpo.</p>
+    </div>
+  </section>
 
-        <section id="info" class="info-section section-padding">
-            <div class="bento-grid">
-                <div class="bento-card bg-orange grid-span-2 reveal">
-                    <h3>📍 DOVE RICEVO</h3>
-                    <p class="big-text">Studi del Centro Sportivo Robilant</p>
-                    <p>P.za Carlo di Robilant 16, Torino (TO)</p>
-                    <div class="pill-badge mt-1">Disponibile anche a Domicilio</div>
-                </div>
-                <div class="bento-card bg-white border-blue reveal">
-                    <h3 class="text-blue">🕒 ORARI</h3>
-                    <p><strong>Lunedì – Venerdì</strong></p>
-                    <p class="big-text text-blue">08:00 - 20:00</p>
-                    <p>Si riceve su appuntamento</p>
+  <!-- SCENA 3: ambiti -->
+  <section class="scenes">
+    <div class="chapter-label reveal">Il mio lavoro</div>
+    <h2 class="scenes-title clip">Ambiti di<br><span>competenza</span></h2>
+    <div class="scene-list">
+      <article class="scene reveal">
+        <div class="scene-num">01</div>
+        <div><h3>Gestione del dolore</h3><p>Trattamento di tensioni muscolari e disagi articolari comuni, come cervicalgie e lombalgie aspecifiche.</p></div>
+      </article>
+      <article class="scene reveal">
+        <div class="scene-num">02</div>
+        <div><h3>Mobilità e funzione</h3><p>Interventi volti a migliorare la mobilità e la distribuzione dei carichi per favorire il recupero funzionale.</p></div>
+      </article>
+      <article class="scene reveal">
+        <div class="scene-num">03</div>
+        <div><h3>Ambito sportivo</h3><p>Supporto nella gestione dei sovraccarichi legati all'attività, collaborando con le figure professionali di riferimento per il mantenimento della performance.</p></div>
+      </article>
+    </div>
+  </section>
 
-                    
-                </div>
-            </div>
-        </section>
+  <section class="note">
+    <p class="reveal">L’osteopatia è una pratica complementare e non sostituisce i percorsi medici o riabilitativi. <strong>La valutazione iniziale</strong> è volta a escludere competenze non osteopatiche: in tal caso, sarà mia cura indirizzare il paziente verso il professionista sanitario più <strong>idoneo.</strong> Intervengo esclusivamente dove la letteratura scientifica riconosce alla terapia manuale un ruolo nel favorire i processi fisiologici, nel pieno rispetto dei limiti clinici.</p>
+  </section>
 
-        <section class="bottom-cta section-padding reveal">
-            <div class="cta-container bg-blue-logo">
-                <h2>CONTATTI</h2>
-                <p style="color:white;">Per info o per fissare un appuntamento, scrivimi o chiamami al <strong>+39 3313289664</strong><br>
-</p>
-                <div class="cta-buttons">
-                    <a href="https://wa.me/393313289664" class="btn-white">WhatsApp</a>
-                    <a href="mailto:marcosantise.osteopata@gmail.com" class="btn-white">Email</a>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- SCENA 4: studio -->
+  <section class="studio" id="info">
+    <div class="studio-place">
+      <div class="bg-word" data-parallax-x="0.25">ROBILANT</div>
+      <div class="chapter-label reveal">📍 Dove ricevo</div>
+      <p class="big clip">Studi del Centro<br>Sportivo Robilant</p>
+      <p class="addr reveal">P.za Carlo di Robilant 16, Torino (TO)</p>
+      <span class="pill reveal">Disponibile anche a domicilio</span>
+    </div>
+    <div class="studio-time">
+      <div class="chapter-label reveal">🕒 Orari</div>
+      <p class="days reveal">Lunedì – Venerdì</p>
+      <p class="hours clip">08:00<br>20:00</p>
+      <p class="reveal">Si riceve su appuntamento</p>
+    </div>
+  </section>
 
-    <footer id="contatti">
-        <div class="footer-bottom reveal">
-            <img src="logo.png" alt="Logo" class="footer-logo">
-            <p><strong>Marco Santise - Osteopata D.O.</strong></p>
-            <p>marcosantise.osteopata@gmail.com | +39 3313289664</p>
-
-            <p>P. IVA 13367420018 | N° ROI 9181</p>
-        </div>
+  <!-- SCENA 5: titoli di coda -->
+  <section class="finale" id="contatti">
+    <div class="chapter-label reveal">Prenota</div>
+    <h2 class="clip">Contatti</h2>
+    <p class="lead reveal">Per info o per fissare un appuntamento, scrivimi o chiamami al</p>
+    <a class="phone reveal" href="tel:+393313289664">+39 331 328 9664</a>
+    <div class="cta-row reveal">
+      <a href="https://wa.me/393313289664" class="btn-white">WhatsApp</a>
+      <a href="mailto:marcosantise.osteopata@gmail.com" class="btn-white">Email</a>
+    </div>
+    <footer class="credits reveal">
+      <img src="logo.png" alt="Logo">
+      <strong>Marco Santise · Osteopata D.O.</strong>
+      marcosantise.osteopata@gmail.com · +39 3313289664<br>
+      P. IVA 13367420018 · N° ROI 9181
     </footer>
+  </section>
+</main>
 
-    <script src="index.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
